@@ -27,7 +27,7 @@ cap = cv2.VideoCapture(0)
 start_time = time.time()
 run_detection = True  # 감정 인식 활성화 상태
 
-print("🚀 감정 인식 시작 (ESC 키: 종료, 스페이스바: 재시작)")
+print("🚀 감정 인식 시작 (ESC Key: End progeram, Spacebar: Restart)")
 
 while True:
     ret, frame = cap.read()
@@ -50,7 +50,7 @@ while True:
                     code = emotion_codes[emotion]
                     arduino.write(f'{code}\n'.encode())  # Arduino로 코드 전송
                     print(f'📤 Sent to Arduino: {emotion} ({code})')
-                    previous_emotion = emotion  # 이전 감정 업데이트
+                    previous_emotion = emotion  # 이전 감정 업테이트
 
                 # 화면에 표시
                 if score is not None:
@@ -61,7 +61,7 @@ while True:
                                 cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
         else:
             # 10초 후 감정 인식 일시정지
-            print("⏸️ 감정 인식 일시정지 (스페이스바로 재시작 가능)")
+            print("⏸️ Pause Detection (You can restart by pressing spacebar)")
             run_detection = False
 
     # 감정 인식 결과 표시
@@ -71,10 +71,10 @@ while True:
     key = cv2.waitKey(1) & 0xFF
 
     if key == 27:  # ESC 키로 종료
-        print("❌ ESC 키 감지 - 프로그램 종료")
+        print("❌ ESC key detetion - End program")
         break
     elif key == 32:  # 스페이스바로 감정 인식 재시작
-        print("▶️ 감정 인식 재시작")
+        print("▶️ Restart emotional detection")
         run_detection = True
         start_time = time.time()  # 타이머 초기화
 
